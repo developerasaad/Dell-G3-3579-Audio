@@ -1,0 +1,34 @@
+# macOS
+.DS_Store
+
+# Xcode
+DerivedData/
+xcuserdata/
+xcshareddata/
+project.xcworkspace/
+*.xcuserstate
+
+# Build outputs
+build/
+dist/
+*.log
+
+# Build dependencies fetched by scripts/fetch-deps.sh
+/Lilu.kext/
+/MacKernelSDK/
+.tmp/
+
+# Generated resources
+*.zlib
+*.md5
+AppleALC/kern_resources.cpp
+
+# Tool binaries
+/alc-verb/alc-verb
+
+# 32-bit helper, only needed when building -arch ACID32
+/clang32/
+
+# Static analysis and coverage
+.svace-dir/
+cov-int/

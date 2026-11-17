@@ -1,0 +1,80 @@
+name: Bug report
+description: Report a reproducible problem with this build
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Read `docs/HARDWARE.md` and `COMPATIBILITY.md` first. A matching codec ID
+        does not make a machine supported.
+
+        Redact serial numbers, UUIDs, MLB/ROM values and any personal data
+        before posting logs.
+
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version and build
+      placeholder: "14.8.9 (23J631)"
+    validations:
+      required: true
+
+  - type: input
+    id: opencore
+    attributes:
+      label: OpenCore version
+      placeholder: "1.0.5"
+    validations:
+      required: true
+
+  - type: input
+    id: lilu
+    attributes:
+      label: Lilu version
+      placeholder: "1.7.3"
+    validations:
+      required: true
+
+  - type: textarea
+    id: layout
+    attributes:
+      label: Active layout
+      description: Output of `ioreg -rn HDEF -l | grep -E 'layout-id|alc-layout-id'`
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour and actual behaviour
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: functions
+    attributes:
+      label: Which functions work on your machine?
+      options:
+        - label: Internal speakers
+        - label: Headphones (jack detection)
+        - label: Internal microphone
+        - label: Headset microphone through the combo jack
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Mention plug order and whether audio was playing.
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Redacted log excerpts, `system_profiler SPAudioDataType`, ioreg output.
+      render: text
+    validations:
+      required: false

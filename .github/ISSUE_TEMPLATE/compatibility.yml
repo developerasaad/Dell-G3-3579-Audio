@@ -1,0 +1,87 @@
+name: Compatibility report
+description: Report a machine you physically tested with this build
+title: "[compat] "
+labels: ["compatibility"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A model is added to the verified list only after physical testing of the
+        four functions below. Redact serial numbers, UUIDs, MLB/ROM values and
+        any personal data.
+
+  - type: input
+    id: model
+    attributes:
+      label: Manufacturer and model
+      placeholder: "Dell G3 3579"
+    validations:
+      required: true
+
+  - type: input
+    id: controller
+    attributes:
+      label: HDA controller ID
+      placeholder: "8086:A348"
+    validations:
+      required: true
+
+  - type: input
+    id: codec
+    attributes:
+      label: Codec vendor/device and revision
+      description: From `ioreg -l | grep -E 'IOHDACodecVendorID|IOHDACodecRevisionID'`
+      placeholder: "10EC:0236 rev 0x100002"
+    validations:
+      required: true
+
+  - type: input
+    id: subsystem
+    attributes:
+      label: Codec subsystem ID (if known)
+      description: macOS does not expose this; a Linux `codec#0` dump is acceptable.
+      placeholder: "1028:086F"
+    validations:
+      required: false
+
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version and build
+      placeholder: "14.8.9 (23J631)"
+    validations:
+      required: true
+
+  - type: input
+    id: opentool
+    attributes:
+      label: OpenCore and Lilu versions
+      placeholder: "OpenCore 1.0.5, Lilu 1.7.3"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: results
+    attributes:
+      label: Physical test results with layout 100
+      options:
+        - label: Internal speakers produce audio
+        - label: Headphones produce audio and are detected on plug/unplug
+        - label: Internal microphone records
+        - label: A CTIA 4-pole headset microphone records intelligible speech
+
+  - type: textarea
+    id: jack
+    attributes:
+      label: Jack behaviour
+      description: Does the output follow plug/unplug? Does the input switch back to the internal mic?
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+      description: Anything unusual about the wiring, BIOS, or model revision.
+    validations:
+      required: false
